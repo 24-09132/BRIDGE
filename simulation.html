@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FLOOD-SENTINEL simulation – test weather scenarios and see the road condition, LEDs and SMS response">
+  <title>FLOOD-SENTINEL Simulation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="page-h">
+      <div><h1>Simulation</h1><p>Test weather scenarios and see how the system responds</p></div>
+      <span class="pill" id="sim-pill">PAUSED</span>
+    </div>
+
+    <section class="card sim-panel">
+      <div class="card-h"><h3>Interactive Test &amp; Weather Preset Simulator</h3></div>
+      <div class="presets" id="presets">
+        <button class="preset" data-p="clear">☀️ Clear &amp; Dry</button>
+        <button class="preset" data-p="drizzle">🌦️ Gentle Drizzle</button>
+        <button class="preset" data-p="moderate">🌧️ Moderate Rain</button>
+        <button class="preset" data-p="downpour">⛈️ Heavy Downpour</button>
+        <button class="preset" data-p="flood">🌊 Flood Emergency</button>
+      </div>
+      <div class="sliders">
+        <div class="slider"><label for="s-rate">Rain rate <span id="s-rate-v">0.0 mm/h</span></label><input type="range" id="s-rate" min="0" max="60" step="0.5" value="0"></div>
+        <div class="slider"><label for="s-rain">Rainfall collected <span id="s-rain-v">0.0 mm</span></label><input type="range" id="s-rain" min="0" max="40" step="0.1" value="0"></div>
+        <div class="slider"><label for="s-pook">Pook-side water level <span id="s-pook-v">0.00 cm</span></label><input type="range" id="s-pook" min="0" max="4" step="0.05" value="0"></div>
+        <div class="slider"><label for="s-bay">Bay-connected river level <span id="s-bay-v">0.00 cm</span></label><input type="range" id="s-bay" min="0" max="4" step="0.05" value="0"></div>
+      </div>
+      <div class="sim-controls">
+        <button class="btn" id="b-run">▶ Start</button>
+        <label class="muted small" for="b-speed">Each step =</label>
+        <select id="b-speed">
+          <option value="1">1 min</option>
+          <option value="5">5 min</option>
+          <option value="10" selected>10 min</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hour</option>
+        </select>
+        <button class="btn ghost" id="b-step">Record one step</button>
+        <button class="btn ghost" id="b-empty">Empty rain container</button>
+        <button class="btn ghost" id="b-reset">Reset</button>
+      </div>
+    </section>
+
+    <section class="card device-link" id="device-link"></section>
+
+    <div id="monitor"></div>
+  </main>
+  <footer>FLOOD-SENTINEL is a research and decision-support prototype. It does not replace official flood warnings, road closures, evacuation orders or instructions from local authorities.</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="model.js"></script>
+  <script src="xlsx.js"></script>
+  <script src="common.js"></script>
+  <script src="sim.js"></script>
+</body>
+</html>

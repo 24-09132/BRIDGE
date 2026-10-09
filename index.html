@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FLOOD-SENTINEL – sign in">
+  <title>FLOOD-SENTINEL Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+  <main class="login-wrap">
+    <form class="card login-card" id="login-form" autocomplete="on">
+      <div class="login-brand">
+        <span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7l5.7 5.6a8 8 0 1 1-11.4 0z"/></svg></span>
+        <div><h1>FLOOD-SENTINEL</h1><p class="muted small">Pook, Brgy. Simlong</p></div>
+      </div>
+      <label for="u">Username</label>
+      <input id="u" name="username" autocomplete="username" required autofocus>
+      <label for="p">Password</label>
+      <input id="p" name="password" type="password" autocomplete="current-password" required>
+      <p class="login-error" id="err" role="alert"></p>
+      <button class="btn" type="submit" id="go">Sign in</button>
+    </form>
+  </main>
+  <script>
+    (async () => {
+      try { const r = await fetch('/api/session', { cache: 'no-store' }); if (r.ok) location.replace('live.html'); } catch (e) {}
+    })();
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const err = document.getElementById('err'), go = document.getElementById('go');
+      err.textContent = ''; go.disabled = true; go.textContent = 'Signing in…';
+      try {
+        const r = await fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: document.getElementById('u').value.trim(), password: document.getElementById('p').value }) });
+        if (r.ok) { location.replace('live.html'); return; }
+        err.textContent = r.status === 401 ? 'Incorrect username or password.' : 'Sign-in failed. Please try again.';
+      } catch (x) { err.textContent = 'Cannot reach the server.'; }
+      go.disabled = false; go.textContent = 'Sign in';
+    });
+  </script>
+</body>
+</html>

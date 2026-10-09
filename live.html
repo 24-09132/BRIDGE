@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FLOOD-SENTINEL live monitor – rainfall, river water levels and road condition for Pook, Barangay Simlong">
+  <title>FLOOD-SENTINEL Live Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="page-h">
+      <div><h1>Live Monitor</h1><p>Real-time readings from the monitoring station</p></div>
+      <span class="pill" id="conn-pill">CONNECTING…</span>
+    </div>
+    <div id="monitor"></div>
+  </main>
+  <footer>FLOOD-SENTINEL is a research and decision-support prototype. It does not replace official flood warnings, road closures, evacuation orders or instructions from local authorities.</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="model.js"></script>
+  <script src="xlsx.js"></script>
+  <script src="common.js"></script>
+  <script src="live.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "flood-sentinel",
+  "version": "1.0.0",
+  "description": "FLOOD-SENTINEL dashboard (Vercel) with serverless API and Upstash Redis",
+  "private": true,
+  "scripts": {
+    "start": "node web_dashboard/server.js"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.34.0"
+  }
+}
